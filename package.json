@@ -1,0 +1,19 @@
+{
+  "name": "ask-chat",
+  "version": "1.0.0",
+  "description": "Real Time Chatting App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "redis": "^4.6.13",
+    "websocket": "^1.0.34",
+    "ws": "^8.16.0"
+  }
+}
