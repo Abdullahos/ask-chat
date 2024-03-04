@@ -2,7 +2,10 @@ import WebSocket, { WebSocketServer } from "ws";
 import { createClient } from 'redis';
 import jwt from 'jsonwebtoken';
 import SnowflakeId from 'snowflake-id';
-const snowflake = new SnowflakeId.default({ workerId: 1, datacenterId: 1 });
+
+const workerId = process.env.SNOWFLAKE_WORKER_ID;
+const datacenterId = process.env.SNOWFLAKE_DATACENTER_ID;
+const snowflake = new SnowflakeId.default({ workerId: workerId, datacenterId: datacenterId });
 
 const secret = '2E#23!dsQrwr12_23';
 
