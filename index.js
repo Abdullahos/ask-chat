@@ -2,25 +2,26 @@ import WebSocket, { WebSocketServer } from "ws";
 import { createClient } from 'redis';
 import jwt from 'jsonwebtoken';
 import SnowflakeId from 'snowflake-id';
+import * as dotenv from "dotenv";
 
+
+dotenv.config();
+const port = process.env.SERVER_PORT;
+const secret = process.env.JWT_SECRET;
 const workerId = process.env.SNOWFLAKE_WORKER_ID;
 const datacenterId = process.env.SNOWFLAKE_DATACENTER_ID;
 const snowflake = new SnowflakeId.default({ workerId: workerId, datacenterId: datacenterId });
 
-const secret = '2E#23!dsQrwr12_23';
 
 const publisher = createClient();
 await publisher.connect();
 
-publisher.on('error', err => console.log('Redis Client Error', err));
-
-
 const subscriber = createClient();
 await subscriber.connect();
 
-
-const wsServer = new WebSocketServer({ port: 3000 });
-console.log("Server is running...");
+console.log(workerId)
+const wsServer = new WebSocketServer({ port: port });
+console.log(`Server is running on port ${port}...`);
 
 const onlineUsers = new Map();
 
